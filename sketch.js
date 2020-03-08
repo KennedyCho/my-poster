@@ -6,29 +6,21 @@ let weight = 0.8;
 function setup(){
 
   createCanvas(w*weight, h*weight);
-  background(200);
-  foreground();
+  background(255, 157, 1);
 
-  // sun();
   let from = color(255, 157, 1);
   let to = color(125, 74, 137);
 
   horizon(from, to);
-
-
+  sun();
+  foreground();
 
 }
 
 function horizon(from, to){
-  stroke('black');
-  // noStroke();
-  // noFill();
+  noStroke();
 
-
-
-
-  for (i=0; i<700; i+=150){
-    // noiseDetail(0.4);
+  for (i=0; i<800; i+=100){
     let colorChange = map(i, 0, 700, 0, 1);
     let layerColor = lerpColor(from, to, colorChange);
     fill(layerColor);
@@ -36,8 +28,8 @@ function horizon(from, to){
     beginShape();
     vertex(width, i+i+300);
     vertex(width, i);
-
-    for (j=0; j<width; j+= 1){
+    let stepChange = map(i, 0, 700, 200, 30);
+    for (j=0; j<width; j+= stepChange){
       vertex(width-j, (noise(j)*(height/9)+i));
 
     }
@@ -46,7 +38,6 @@ function horizon(from, to){
     vertex(0,i+i+300);
     endShape();
   }
-  // console.log(noise(xPos));
 
 
 }
@@ -54,23 +45,17 @@ function horizon(from, to){
 function sun(){
   noStroke();
   fill(255, 157, 1);
-  ellipse(width/3, height/4, width/5);
+  ellipse(width/2.5, height*0.6, width/4);
   fill(255, 114, 14);
-  ellipse(width*0.7, height*0.5, width/5);
+  ellipse(width*0.7, height*0.8, width/4);
 
 }
-
-function draw(){
-
-}
-
-
 
 function foreground() {
   // stroke('red');
   // strokeWeight(5);
   noStroke();
-  fill(0);
+  fill(37, 38, 74);
 
   // ground
   rect(0, height, width, -height/30);
