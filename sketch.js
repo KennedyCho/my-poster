@@ -9,9 +9,34 @@ function setup(){
   background(200);
   foreground();
 
-  sun();
+  // sun();
 
-  // horizon();
+  horizon();
+}
+
+function horizon(){
+  stroke('red');
+  // noFill();
+  fill("blue");
+
+  for (i=0; i<400; i+=100){
+    // noiseDetail(0.4);
+    beginShape();
+    console.log(i);
+    vertex(0,i+200);
+    vertex(0,i);
+
+    for (j=0; j<width; j+= 1){
+      vertex(j, (noise(j)*(height/9)+i));
+
+    }
+    vertex(width, i);
+    vertex(width, i+200)
+    endShape();
+  }
+  // console.log(noise(xPos));
+
+
 }
 
 function sun(){
